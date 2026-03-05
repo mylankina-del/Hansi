@@ -1,0 +1,271 @@
+Теперь в большое поле ниже вставь весь этот код — держи палец на поле пока не появится “Вставить”:
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mein Tag">
+<meta name="theme-color" content="#2D6A4F">
+<title>Mein Arbeitstag</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2D6A4F;
+    --green-light: #52B788;
+    --green-pale: #D8F3DC;
+    --pink: #F28FAD;
+    --bg: #F0F7F4;
+    --white: #FFFFFF;
+    --dark: #1a2e23;
+    --gray: #8a9e94;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Nunito', sans-serif; background: var(--bg); min-height: 100vh; overflow-x: hidden; }
+  #splash { position: fixed; inset: 0; background: linear-gradient(160deg, #1B4332 0%, #2D6A4F 60%, #40916C 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; z-index: 1000; transition: opacity 0.6s ease, transform 0.6s ease; }
+  #splash.hide { opacity: 0; transform: scale(1.05); pointer-events: none; }
+  .splash-icon { font-size: 80px; animation: splashPop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s both; }
+  .splash-title { color: white; font-size: 32px; font-weight: 900; text-align: center; line-height: 1.2; animation: splashFade 0.5s ease 0.4s both; }
+  .splash-sub { color: rgba(255,255,255,0.6); font-size: 15px; font-weight: 700; animation: splashFade 0.5s ease 0.55s both; }
+  .splash-loader { width: 48px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden; animation: splashFade 0.5s ease 0.6s both; margin-top: 12px; }
+  .splash-loader-bar { height: 100%; background: white; border-radius: 2px; animation: load 1.4s ease 0.7s forwards; width: 0%; }
+  @keyframes splashPop { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  @keyframes splashFade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes load { 0% { width: 0%; } 60% { width: 70%; } 100% { width: 100%; } }
+  .screen { display: none; min-height: 100vh; flex-direction: column; }
+  .screen.active { display: flex; }
+  #home { background: linear-gradient(160deg, #1B4332 0%, #2D6A4F 50%, #40916C 100%); align-items: center; justify-content: center; padding: 40px 24px; }
+  .home-greeting { color: rgba(255,255,255,0.7); font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .home-title { color: white; font-size: 36px; font-weight: 900; text-align: center; line-height: 1.1; margin-bottom: 8px; }
+  .home-date { color: var(--green-pale); font-size: 15px; font-weight: 700; margin-bottom: 48px; }
+  .summary-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 340px; margin-bottom: 40px; }
+  .summary-card { background: rgba(255,255,255,0.12); border-radius: 20px; padding: 20px 16px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); }
+  .summary-card.full { grid-column: span 2; }
+  .summary-emoji { font-size: 28px; display: block; margin-bottom: 6px; }
+  .summary-number { color: white; font-size: 42px; font-weight: 900; line-height: 1; display: block; }
+  .summary-label { color: rgba(255,255,255,0.65); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; display: block; }
+  .start-btn { background: white; color: var(--green); border: none; border-radius: 24px; padding: 20px 48px; font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 900; cursor: pointer; box-shadow: 0 8px 32px rgba(0,0,0,0.25); transition: transform 0.1s; }
+  .start-btn:active { transform: scale(0.96); }
+  .counter-header { background: var(--green); padding: 20px 24px 24px; display: flex; align-items: center; gap: 16px; }
+  .back-btn { background: rgba(255,255,255,0.2); border: none; border-radius: 12px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; color: white; flex-shrink: 0; }
+  .counter-step { color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+  .counter-title { color: white; font-size: 22px; font-weight: 900; }
+  .progress-dots { display: flex; gap: 8px; justify-content: center; padding: 16px 0 0; background: var(--green); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); transition: all 0.3s; }
+  .dot.active { background: white; width: 24px; border-radius: 4px; }
+  .dot-footer { height: 16px; background: var(--green); border-radius: 0 0 24px 24px; }
+  .counter-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; gap: 32px; }
+  .counter-emoji { font-size: 64px; }
+  .counter-display { display: flex; align-items: center; gap: 24px; }
+  .count-btn { width: 80px; height: 80px; border-radius: 50%; border: none; font-size: 40px; font-weight: 900; font-family: 'Nunito', sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.1s; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+  .count-btn:active { transform: scale(0.9); }
+  .count-btn.minus { background: white; color: var(--gray); font-size: 48px; }
+  .count-btn.plus { background: var(--green); color: white; }
+  .count-number { font-size: 96px; font-weight: 900; color: var(--dark); min-width: 120px; text-align: center; line-height: 1; }
+  .count-number.bump { animation: bump 0.15s ease; }
+  @keyframes bump { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
+  .count-hint { color: var(--gray); font-size: 15px; font-weight: 700; text-align: center; }
+  .next-btn { background: var(--green); color: white; border: none; border-radius: 20px; padding: 18px 40px; font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900; cursor: pointer; width: 100%; max-width: 300px; transition: transform 0.1s; box-shadow: 0 6px 24px rgba(45,106,79,0.35); }
+  .next-btn:active { transform: scale(0.97); }
+  .mood-header { background: var(--pink); padding: 20px 24px 24px; display: flex; align-items: center; gap: 16px; }
+  .mood-header .counter-title { color: white; }
+  .mood-header .counter-step { color: rgba(255,255,255,0.6); }
+  .mood-header .back-btn { background: rgba(255,255,255,0.25); }
+  .mood-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; gap: 40px; }
+  .mood-question { font-size: 24px; font-weight: 900; color: var(--dark); text-align: center; line-height: 1.3; }
+  .mood-options { display: flex; gap: 16px; justify-content: center; }
+  .mood-btn { background: white; border: 3px solid transparent; border-radius: 24px; padding: 20px 16px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: all 0.15s; box-shadow: 0 4px 16px rgba(0,0,0,0.08); width: 90px; }
+  .mood-btn:active { transform: scale(0.95); }
+  .mood-btn.selected { border-color: var(--pink); background: #FFF0F5; transform: scale(1.05); }
+  .mood-face { font-size: 40px; }
+  .mood-label { font-size: 11px; font-weight: 800; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
+  .mood-btn.selected .mood-label { color: var(--pink); }
+  #done { background: linear-gradient(160deg, #1B4332 0%, #2D6A4F 60%, #52B788 100%); align-items: center; justify-content: center; padding: 40px 24px; text-align: center; gap: 24px; }
+  .done-icon { font-size: 80px; animation: celebrate 0.6s ease; }
+  @keyframes celebrate { 0% { transform: scale(0) rotate(-20deg); } 60% { transform: scale(1.2) rotate(10deg); } 100% { transform: scale(1) rotate(0); } }
+  .done-title { color: white; font-size: 32px; font-weight: 900; line-height: 1.2; }
+  .done-subtitle { color: rgba(255,255,255,0.7); font-size: 16px; font-weight: 700; }
+  .done-summary { background: rgba(255,255,255,0.12); border-radius: 24px; padding: 24px; width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 16px; border: 1px solid rgba(255,255,255,0.15); }
+  .done-row { display: flex; justify-content: space-between; align-items: center; }
+  .done-row-label { color: rgba(255,255,255,0.7); font-size: 15px; font-weight: 700; }
+  .done-row-value { color: white; font-size: 24px; font-weight: 900; }
+  .done-divider { height: 1px; background: rgba(255,255,255,0.15); }
+  .home-again-btn { background: white; color: var(--green); border: none; border-radius: 20px; padding: 18px 40px; font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 900; cursor: pointer; transition: transform 0.1s; box-shadow: 0 8px 32px rgba(0,0,0,0.2); width: 100%; max-width: 300px; }
+  .home-again-btn:active { transform: scale(0.97); }
+</style>
+</head>
+<body>
+<div id="splash">
+  <div class="splash-icon">📦</div>
+  <div class="splash-title">Mein<br>Arbeitstag</div>
+  <div class="splash-sub">Hallo, Hans! 👋</div>
+  <div class="splash-loader"><div class="splash-loader-bar"></div></div>
+</div>
+<div class="screen" id="home">
+  <span class="home-greeting">Hallo, Hans! 👋</span>
+  <h1 class="home-title">Mein<br>Arbeitstag</h1>
+  <div class="home-date" id="homeDate"></div>
+  <div class="summary-cards">
+    <div class="summary-card"><span class="summary-emoji">📦</span><span class="summary-number" id="totalKartons">0</span><span class="summary-label">Kartons heute</span></div>
+    <div class="summary-card"><span class="summary-emoji">📋</span><span class="summary-number" id="totalAuftraege">0</span><span class="summary-label">Aufträge heute</span></div>
+    <div class="summary-card full"><span class="summary-emoji">🤝</span><span class="summary-number" id="totalHelfen">0</span><span class="summary-label">Mal geholfen heute</span></div>
+  </div>
+  <button class="start-btn" onclick="startTracking()">+ Eintragen</button>
+</div>
+<div class="screen" id="counter-kartons">
+  <div class="counter-header">
+    <button class="back-btn" onclick="goHome()">←</button>
+    <div><div class="counter-step">Schritt 1 von 3</div><div class="counter-title">Kartons verpackt</div></div>
+  </div>
+  <div class="progress-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="dot-footer"></div>
+  <div class="counter-body">
+    <div class="counter-emoji">📦</div>
+    <div class="counter-display">
+      <button class="count-btn minus" onclick="changeCount('kartons',-1)">−</button>
+      <div class="count-number" id="countKartons">0</div>
+      <button class="count-btn plus" onclick="changeCount('kartons',1)">+</button>
+    </div>
+    <div class="count-hint">Wie viele Kartons hast du verpackt?</div>
+    <button class="next-btn" onclick="showScreen('counter-auftraege')">Weiter →</button>
+  </div>
+</div>
+<div class="screen" id="counter-auftraege">
+  <div class="counter-header">
+    <button class="back-btn" onclick="showScreen('counter-kartons')">←</button>
+    <div><div class="counter-step">Schritt 2 von 3</div><div class="counter-title">Aufträge bearbeitet</div></div>
+  </div>
+  <div class="progress-dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+  <div class="dot-footer"></div>
+  <div class="counter-body">
+    <div class="counter-emoji">📋</div>
+    <div class="counter-display">
+      <button class="count-btn minus" onclick="changeCount('auftraege',-1)">−</button>
+      <div class="count-number" id="countAuftraege">0</div>
+      <button class="count-btn plus" onclick="changeCount('auftraege',1)">+</button>
+    </div>
+    <div class="count-hint">Wie viele Aufträge hast du bearbeitet?</div>
+    <button class="next-btn" onclick="showScreen('counter-helfen')">Weiter →</button>
+  </div>
+</div>
+<div class="screen" id="counter-helfen">
+  <div class="counter-header">
+    <button class="back-btn" onclick="showScreen('counter-auftraege')">←</button>
+    <div><div class="counter-step">Schritt 3 von 3</div><div class="counter-title">Kollegen geholfen</div></div>
+  </div>
+  <div class="progress-dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
+  <div class="dot-footer"></div>
+  <div class="counter-body">
+    <div class="counter-emoji">🤝</div>
+    <div class="counter-display">
+      <button class="count-btn minus" onclick="changeCount('helfen',-1)">−</button>
+      <div class="count-number" id="countHelfen">0</div>
+      <button class="count-btn plus" onclick="changeCount('helfen',1)">+</button>
+    </div>
+    <div class="count-hint">Wie oft hast du jemandem geholfen?</div>
+    <button class="next-btn" onclick="showScreen('mood')" style="background:var(--pink);box-shadow:0 6px 24px rgba(242,143,173,0.4);">Weiter →</button>
+  </div>
+</div>
+<div class="screen" id="mood">
+  <div class="mood-header">
+    <button class="back-btn" onclick="showScreen('counter-helfen')">←</button>
+    <div><div class="counter-step">Fast fertig!</div><div class="counter-title">Wie war dein Tag?</div></div>
+  </div>
+  <div class="mood-body">
+    <div class="mood-question">Wie hast du dich heute bei der Arbeit gefühlt?</div>
+    <div class="mood-options">
+      <button class="mood-btn" onclick="selectMood(1,this)"><span class="mood-face">😔</span><span class="mood-label">Schwer</span></button>
+      <button class="mood-btn" onclick="selectMood(2,this)"><span class="mood-face">😐</span><span class="mood-label">OK</span></button>
+      <button class="mood-btn" onclick="selectMood(3,this)"><span class="mood-face">😊</span><span class="mood-label">Super!</span></button>
+    </div>
+    <button class="next-btn" id="moodNext" onclick="saveDay()" style="background:var(--pink);box-shadow:0 6px 24px rgba(242,143,173,0.35);opacity:0.4;pointer-events:none;max-width:300px;width:100%;">Tag speichern ✓</button>
+  </div>
+</div>
+<div class="screen" id="done">
+  <div class="done-icon">🎉</div>
+  <div class="done-title">Super gemacht,<br>Hans!</div>
+  <div class="done-subtitle">Dein Tag ist gespeichert</div>
+  <div class="done-summary">
+    <div class="done-row"><span class="done-row-label">📦 Kartons</span><span class="done-row-value" id="doneKartons">0</span></div>
+    <div class="done-divider"></div>
+    <div class="done-row"><span class="done-row-label">📋 Aufträge</span><span class="done-row-value" id="doneAuftraege">0</span></div>
+    <div class="done-divider"></div>
+    <div class="done-row"><span class="done-row-label">🤝 Geholfen</span><span class="done-row-value" id="doneHelfen">0</span></div>
+    <div class="done-divider"></div>
+    <div class="done-row"><span class="done-row-label">😊 Tag</span><span class="done-row-value" id="doneMood">—</span></div>
+  </div>
+  <button class="home-again-btn" onclick="goHome()">← Zurück zur Übersicht</button>
+</div>
+<script>
+  const state = { kartons:0, auftraege:0, helfen:0, mood:null };
+  const history = JSON.parse(localStorage.getItem('hansData') || '[]');
+  function formatDate() {
+    const d = new Date();
+    const days = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+    const months = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+    return `${days[d.getDay()]}, ${d.getDate()}. ${months[d.getMonth()]} ${d.getFullYear()}`;
+  }
+  function updateDate() { document.getElementById('homeDate').textContent = formatDate(); }
+  updateDate();
+  const now = new Date();
+  const msToMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1) - now;
+  setTimeout(() => { updateDate(); setInterval(updateDate, 86400000); }, msToMidnight);
+  function updateHomeSummary() {
+    const today = new Date().toDateString();
+    const e = history.filter(x => new Date(x.date).toDateString() === today);
+    document.getElementById('totalKartons').textContent = e.reduce((s,x)=>s+x.kartons,0);
+    document.getElementById('totalAuftraege').textContent = e.reduce((s,x)=>s+x.auftraege,0);
+    document.getElementById('totalHelfen').textContent = e.reduce((s,x)=>s+x.helfen,0);
+  }
+  updateHomeSummary();
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0,0);
+  }
+  function startTracking() {
+    state.kartons=0; state.auftraege=0; state.helfen=0; state.mood=null;
+    ['countKartons','countAuftraege','countHelfen'].forEach(id => document.getElementById(id).textContent='0');
+    document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+    const mn = document.getElementById('moodNext');
+    mn.style.opacity='0.4'; mn.style.pointerEvents='none';
+    showScreen('counter-kartons');
+  }
+  function goHome() { updateHomeSummary(); showScreen('home'); }
+  function changeCount(key, delta) {
+    state[key] = Math.max(0, state[key]+delta);
+    const ids = {kartons:'countKartons',auftraege:'countAuftraege',helfen:'countHelfen'};
+    const el = document.getElementById(ids[key]);
+    el.textContent = state[key];
+    el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
+    if (navigator.vibrate) navigator.vibrate(30);
+  }
+  function selectMood(val, btn) {
+    state.mood = val;
+    document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const mn = document.getElementById('moodNext');
+    mn.style.opacity='1'; mn.style.pointerEvents='auto';
+  }
+  function saveDay() {
+    const moodEmoji = ['','😔','😐','😊'];
+    history.push({date: new Date().toISOString(), ...state});
+    localStorage.setItem('hansData', JSON.stringify(history));
+    document.getElementById('doneKartons').textContent = state.kartons;
+    document.getElementById('doneAuftraege').textContent = state.auftraege;
+    document.getElementById('doneHelfen').textContent = state.helfen;
+    document.getElementById('doneMood').textContent = moodEmoji[state.mood]||'—';
+    showScreen('done');
+  }
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('splash').classList.add('hide');
+      showScreen('home');
+      setTimeout(() => { const s = document.getElementById('splash'); if(s) s.remove(); }, 700);
+    }, 2200);
+  });
+</script>
+</body>
+</html>
