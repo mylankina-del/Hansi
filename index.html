@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Hana">
-<meta name="theme-color" content="#005D42">
-<title>Hana</title>
+<meta name="apple-mobile-web-app-title" content="Hansi">
+<meta name="theme-color" content="#1F3FAF">
+<meta name="color-scheme" content="light dark">
+<title>Hansi</title>
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="manifest" href="manifest.json">
@@ -15,15 +16,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --blue-dark: #005D42;
-  --blue: #04815D;
-  --blue-grad-top: #04815D;
-  --blue-grad-bot: #005D42;
-  --cream: #EBFCF4;
-  --cream-bg: #EBFCF4;
+  --blue-dark: #133188;
+  --blue: #3857B2;
+  --blue-grad-top: #3857B2;
+  --blue-grad-bot: #133188;
+  --cream: #ebded1;
+  --cream-bg: #ede8df;
   --glass: rgba(255,255,255,0.11);
   --glass-border: rgba(255,255,255,0.16);
-  --muted: rgba(235,252,244,0.55);
+  --muted: rgba(235,222,209,0.75);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; user-select: none; touch-action: manipulation; }
@@ -32,12 +33,12 @@ html, body {
   font-family: 'Nunito', sans-serif;
   height: 100%;
   overflow: hidden;
-  background: #04815D;
+  background: var(--blue-dark);
 }
 
 /* ── BG ── */
 .bluebg {
-  background: linear-gradient(175deg, #04815D 0%, #005D42 100%);
+  background: linear-gradient(175deg, #3857B2 0%, #133188 100%);
 }
 
 /* ════════════════════════════
@@ -131,22 +132,23 @@ html, body {
 /* ════════════════════════════
    SPLASH
 ════════════════════════════ */
-#splash {
-  background: linear-gradient(175deg, #04815D 0%, #005D42 100%);
-  z-index: 50;
-  transform: none !important;
-  transition: opacity 0.5s ease;
-}
+#splash { background: linear-gradient(175deg, #3857B2 0%, #133188 100%); z-index: 50; }
 
 #splashLogoWrap {
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: splashPop 0.7s cubic-bezier(0.34,1.4,0.64,1) 0.2s both;
+}
+
+@keyframes splashPop {
+  from { opacity: 0; transform: scale(0.75); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 #splashSVG {
-  width: 260px;
-  height: auto;
+  width: 210px;
+  height: 67px;
   display: block;
 }
 
@@ -154,7 +156,7 @@ html, body {
    ENTER NAME
 ════════════════════════════ */
 #enter-name {
-  background: linear-gradient(175deg, #04815D 0%, #005D42 100%);
+  background: linear-gradient(175deg, #3857B2 0%, #133188 100%);
   padding: 48px 32px;
   gap: 0;
 }
@@ -185,12 +187,12 @@ html, body {
   -webkit-appearance: none;
   backdrop-filter: blur(16px);
 }
-.glass-input::placeholder { color: rgba(235,252,244,0.3); }
-.glass-input:focus { border-color: rgba(235,252,244,0.4); }
+.glass-input::placeholder { color: rgba(235,222,209,0.5); }
+.glass-input:focus { border-color: rgba(235,222,209,0.4); }
 
 .cream-btn {
   background: var(--cream);
-  color: #025C42;
+  color: var(--blue-dark);
   border: none;
   border-radius: 20px;
   padding: 19px 0;
@@ -213,7 +215,7 @@ html, body {
    WELCOME
 ════════════════════════════ */
 #welcome {
-  background: linear-gradient(175deg, #04815D 0%, #005D42 100%);
+  background: linear-gradient(175deg, #3857B2 0%, #133188 100%);
   gap: 0;
   padding: 0 32px;
 }
@@ -225,8 +227,8 @@ html, body {
 }
 
 .welcome-h {
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   margin-bottom: 16px;
   animation: popIn 0.5s cubic-bezier(0.34,1.5,0.64,1) 0.1s both;
 }
@@ -267,7 +269,7 @@ html, body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(235,252,244,0.35);
+  background: rgba(235,222,209,0.35);
   animation: dotPulse 1.4s ease-in-out infinite;
 }
 .dot:nth-child(1) { animation-delay: 0s; }
@@ -275,8 +277,8 @@ html, body {
 .dot:nth-child(3) { animation-delay: 0.44s; }
 
 @keyframes dotPulse {
-  0%, 80%, 100% { background: rgba(235,252,244,0.2); transform: scale(0.8); }
-  40% { background: rgba(235,252,244,0.95); transform: scale(1.2); }
+  0%, 80%, 100% { background: rgba(235,222,209,0.2); transform: scale(0.8); }
+  40% { background: rgba(235,222,209,0.95); transform: scale(1.2); }
 }
 @keyframes popIn { from{opacity:0;transform:scale(0.4)} to{opacity:1;transform:scale(1)} }
 @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
@@ -285,7 +287,7 @@ html, body {
    MAIN
 ════════════════════════════ */
 #main {
-  background: linear-gradient(175deg, #04815D 0%, #005D42 100%);
+  background: linear-gradient(175deg, #3857B2 0%, #133188 100%);
   justify-content: flex-start;
   padding: 0;
   align-items: stretch;
@@ -309,7 +311,7 @@ html, body {
 }
 
 .main-greeting {
-  color: rgba(235,252,244,0.75);
+  color: var(--muted);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 2px;
@@ -353,7 +355,7 @@ html, body {
 .nav-btn.ghost { opacity: 0; pointer-events: none; }
 
 .main-date {
-  color: #EBFCF4;
+  color: var(--cream);
   font-size: 15px;
   font-weight: 700;
   text-align: center;
@@ -378,16 +380,14 @@ html, body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   min-height: 160px;
 }
 
 /* Subtle color tints per category */
-.card-blue   { background: rgba(185,240,120,0.22); border: 1.5px solid rgba(185,240,120,0.3); }
-.card-indigo { background: rgba(2,92,66,0.35);      border: 1.5px solid rgba(255,255,255,0.12); }
-.card-teal   { background: rgba(80,160,255,0.2);    border: 1.5px solid rgba(120,190,255,0.3); }
-.card-violet { background: rgba(255,200,60,0.18);   border: 1.5px solid rgba(255,210,80,0.3); }
+.card-blue   { background: rgba(60,100,255,0.35); border-color: rgba(100,150,255,0.5); }
+.card-indigo { background: rgba(100,50,255,0.35); border-color: rgba(150,100,255,0.5); }
+.card-teal   { background: rgba(20,160,160,0.35); border-color: rgba(60,200,200,0.5); }
+.card-violet { background: rgba(180,50,170,0.35); border-color: rgba(220,100,200,0.5); }
 
 .card-icon { font-size: 26px; line-height: 1; margin-bottom: auto; }
 
@@ -402,17 +402,17 @@ html, body {
 .c-num {
   font-size: 40px;
   font-weight: 900;
-  color: #EBFCF4;
+  color: var(--cream);
   text-align: center;
   line-height: 1;
   flex: 1;
 }
 
 .c-btn {
-  background: rgba(255,255,255,0.15);
-  border: 1.5px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(255,255,255,0.18);
   border-radius: 8px;
-  color: #EBFCF4;
+  color: var(--cream);
   font-size: 18px;
   font-weight: 400;
   cursor: pointer;
@@ -432,19 +432,20 @@ html, body {
 @keyframes bump { 0%,100%{transform:scale(1)} 50%{transform:scale(1.18)} }
 
 .card-lbl {
-  color: rgba(235,252,244,0.85);
-  font-size: 11px;
+  color: var(--muted);
+  font-size: 10px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
   margin-top: auto;
+  white-space: nowrap;
 }
 
 /* mood card */
 .mood-card {
-  background: rgba(255,200,60,0.18);
-  border: 1.5px solid rgba(255,210,80,0.3);
+  background: rgba(200,80,180,0.18);
+  border: 1.5px solid rgba(220,120,200,0.25);
   border-radius: 20px;
   padding: 18px 14px 16px;
   display: flex;
@@ -458,7 +459,7 @@ html, body {
 }
 
 .mood-lbl {
-  color: rgba(235,252,244,0.85);
+  color: var(--muted);
   font-size: 10px;
   font-weight: 800;
   text-transform: uppercase;
@@ -490,11 +491,11 @@ html, body {
   min-height: 44px;
 }
 .mood-opt:active { transform: scale(0.92); }
-.mood-opt.on { background: rgba(235,252,244,0.18); border-color: rgba(235,252,244,0.45); transform: scale(1.08); }
+.mood-opt.on { background: rgba(235,222,209,0.18); border-color: rgba(235,222,209,0.45); transform: scale(1.08); }
 
 .erledigt {
   background: var(--cream);
-  color: #025C42;
+  color: var(--blue-dark);
   border: none;
   border-radius: 20px;
   padding: 19px;
@@ -535,16 +536,16 @@ html, body {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: rgba(235,252,244,0.15);
-  border: 1.5px solid rgba(235,252,244,0.25);
+  background: rgba(235,222,209,0.15);
+  border: 1.5px solid rgba(235,222,209,0.25);
   transition: background 0.3s;
   pointer-events: none;
   font-size: 0;
 }
 
 .week-dot-circle.done {
-  background: #B9F078;
-  border-color: #B9F078;
+  background: rgba(235,222,209,0.85);
+  border-color: rgba(235,222,209,0.9);
 }
 
 .week-dot-circle.today {
@@ -553,8 +554,8 @@ html, body {
 }
 
 .week-dot-label {
-  color: rgba(235,252,244,0.8);
-  font-size: 9px;
+  color: rgba(235,222,209,0.8);
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -564,7 +565,7 @@ html, body {
    ACHIEVEMENT
 ════════════════════════════ */
 #achievement {
-  background: linear-gradient(175deg, #04815D 0%, #005D42 100%);
+  background: linear-gradient(175deg, #3857B2 0%, #133188 100%);
   z-index: 40;
 }
 
@@ -603,7 +604,7 @@ html, body {
 }
 
 .ach-desc {
-  color: rgba(235,252,244,0.75);
+  color: rgba(235,222,209,0.9);
   font-size: 18px;
   font-weight: 700;
   line-height: 1.4;
@@ -627,7 +628,7 @@ html, body {
 }
 
 .report-top {
-  background: linear-gradient(175deg, #04815D 0%, #005D42 100%);
+  background: linear-gradient(175deg, #3857B2 0%, #133188 100%);
   padding: 60px 32px 36px;
   border-radius: 0 0 32px 32px;
   text-align: center;
@@ -638,7 +639,7 @@ html, body {
 }
 
 .report-tag {
-  color: rgba(235,252,244,0.5);
+  color: rgba(235,222,209,0.5);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 2.5px;
@@ -681,7 +682,7 @@ html, body {
   background: white;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 2px 20px rgba(#005D42,0.08);
+  box-shadow: 0 2px 20px rgba(26,47,160,0.08);
   animation: fadeUp 0.5s cubic-bezier(0.34,1.2,0.64,1) 0.35s both;
 }
 
@@ -713,20 +714,20 @@ html, body {
   gap: 14px;
   animation: fadeUp 0.4s ease both;
 }
-.r-row + .r-row { border-top: 1px solid rgba(2, 93, 66, 0.12); }
+.r-row + .r-row { border-top: 1px solid rgba(26,47,160,0.07); }
 .r-row:nth-child(1) { animation-delay: 0.05s; }
 .r-row:nth-child(2) { animation-delay: 0.12s; }
 .r-row:nth-child(3) { animation-delay: 0.19s; }
 .r-row:nth-child(4) { animation-delay: 0.26s; }
 
 .r-icon { font-size: 24px; width: 30px; text-align: center; flex-shrink: 0; }
-.r-label { flex: 1; color: #025C42; font-size: 16px; font-weight: 700; }
-.r-val { color: #025C42; font-size: 26px; font-weight: 900; }
+.r-label { flex: 1; color: var(--blue-dark); font-size: 16px; font-weight: 700; }
+.r-val { color: var(--blue-dark); font-size: 26px; font-weight: 900; }
 
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(2,92,66,0.75);
+  background: rgba(10,20,80,0.7);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: 200;
@@ -739,7 +740,7 @@ html, body {
   pointer-events: all;
 }
 .modal-box {
-  background: linear-gradient(175deg, #04815D 0%, #005D42 100%);
+  background: linear-gradient(175deg, #3857B2 0%, #133188 100%);
   border: 1.5px solid rgba(255,255,255,0.2);
   border-radius: 24px;
   padding: 32px 28px;
@@ -781,7 +782,7 @@ html, body {
 .modal-btn:active { transform: scale(0.96); }
 .modal-btn-no {
   background: var(--cream);
-  color: #025C42;
+  color: var(--blue-dark);
 }
 .modal-btn-yes {
   background: rgba(255,255,255,0.12);
@@ -789,9 +790,9 @@ html, body {
   border: 1.5px solid rgba(255,100,100,0.35);
 }
 
-
-  background: #025C42;
-  color: #EBFCF4;
+.btn-solid {
+  background: var(--blue-dark);
+  color: var(--cream);
   border: none;
   border-radius: 18px;
   padding: 17px;
@@ -805,9 +806,9 @@ html, body {
 .btn-solid:active { transform: scale(0.96); }
 
 .btn-soft {
-  background: rgba(2,92,66,0.08);
-  color: #025C42;
-  border: 2px solid rgba(2,92,66,0.4);
+  background: rgba(26,47,160,0.09);
+  color: var(--blue-dark);
+  border: none;
   border-radius: 18px;
   padding: 17px;
   font-family: 'Nunito', sans-serif;
@@ -820,8 +821,8 @@ html, body {
 .btn-soft:active { transform: scale(0.96); }
 
 .btn-prev {
-  background: #025C42;
-  color: #EBFCF4;
+  background: var(--blue-dark);
+  color: var(--cream);
   border: none;
   border-radius: 18px;
   padding: 17px;
@@ -834,602 +835,32 @@ html, body {
   text-align: center;
 }
 .btn-prev:active { transform: scale(0.96); }
-</style>
-</head>
-<body>
 
-<!-- SPLASH -->
-<div class="screen active" id="splash">
-  <div id="splashLogoWrap">
-    <svg id="splashSVG" viewBox="0 0 494.75 169.94" xmlns="http://www.w3.org/2000/svg" style="display:block">
-      <defs>
-        <filter id="logoGlow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="6" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <filter id="logoGlowSoft" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="3" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-      <g id="logoLetters">
-        <path fill="#ebfcf4" d="M30.84,135.94c0-7.12,2.64-15.67,2.64-48.22v-35.2c0-13.63-9.97-12.21-9.97-19.53s14.25-11.39,28.28-11.39c12.82,0,18.31,4.88,18.31,17.7v31.54c0,2.24.81,3.46,3.26,3.46h25.44c2.44,0,3.26-1.22,3.26-3.46v-36.83c0-7.53,4.07-12.41,19.13-12.41s19.94,4.68,19.94,12-2.24,15.87-2.24,47.01v36.22c0,13.63,9.77,12.21,9.77,19.53s-14.25,11.6-28.28,11.6c-12.62,0-18.31-4.88-18.31-17.91v-33.37c0-2.24-.81-3.46-3.26-3.46h-25.44c-2.44,0-3.26,1.22-3.26,3.46v38.86c0,7.53-4.07,12.41-19.13,12.41s-20.14-4.88-20.14-12.01Z"/>
-        <path fill="#ebfcf4" d="M150.14,99.72c0-28.89,18.31-48.63,40.29-48.63,17.09,0,23.19,8.95,27.27,8.95s10.99-8.34,18.52-8.34c6.71,0,9.36,4.07,9.36,11.8s-2.44,26.66-2.44,42.12c0,25.64,11.39,20.55,11.39,28.28,0,8.34-12.82,14.04-24.42,14.04-17.7,0-11.8-14.85-16.07-14.85s-9.56,14.85-29.71,14.85c-21.37,0-34.19-19.33-34.19-48.22ZM209.15,95.04c0-13.63-2.24-26.05-10.58-26.05s-11.8,13.63-11.8,29.5c0,17.3,3.05,27.88,10.17,27.88,7.53,0,12.21-10.78,12.21-31.34Z"/>
-        <path fill="#ebfcf4" d="M263.26,137.57c0-5.49,3.05-25.03,3.05-46.8s-10.99-17.91-10.99-25.03c0-8.95,17.09-13.43,28.08-13.43,16.28,0,9.56,13.84,13.84,13.84s10.38-15.06,31.54-15.06,27.67,17.09,27.67,33.98c0,8.14-2.04,25.03-2.04,30.93,0,14.85,11.39,10.58,11.39,17.7,0,7.73-10.38,14.65-23.4,14.65-14.45,0-22.99-8.14-22.99-24.83,0-10.58,1.83-28.89,1.83-36.42,0-7.94-1.22-14.24-6.92-14.24-7.33,0-13.84,10.17-13.84,49.65v14.24c0,6.71-3.46,10.99-19.54,10.99-12.82,0-17.7-4.27-17.7-10.17Z"/>
-        <path fill="#ebfcf4" d="M366.85,99.72c0-28.89,18.31-48.63,40.29-48.63,17.09,0,23.19,8.95,27.27,8.95s10.99-8.34,18.52-8.34c6.71,0,9.36,4.07,9.36,11.8s-2.44,26.66-2.44,42.12c0,25.64,11.39,20.55,11.39,28.28,0,8.34-12.82,14.04-24.42,14.04-17.7,0-11.8-14.85-16.07-14.85s-9.56,14.85-29.71,14.85c-21.37,0-34.19-19.33-34.19-48.22ZM425.86,95.04c0-13.63-2.24-26.05-10.58-26.05s-11.8,13.63-11.8,29.5c0,17.3,3.05,27.88,10.17,27.88,7.53,0,12.21-10.78,12.21-31.34Z"/>
-      </g>
-    </svg>
-  </div>
-</div>
-
-<style>
-#splashSVG {
-  animation: logoBoom 0.5s cubic-bezier(0.34, 1.6, 0.64, 1) 0.2s both;
-  transform-origin: center center;
+/* ─── ИЗМЕНЕНИЯ ТОЛЬКО ДЛЯ ANDROID ─── */
+/* Глобально для Android-браузеров: фиксируем высоту */
+.android-os body, .android-os html {
+  height: 100dvh !important;
 }
 
-@keyframes logoBoom {
-  0%   { opacity: 0; transform: scale(0.6); }
-  100% { opacity: 1; transform: scale(1); }
+/* --- Главный экран --- */
+.android-os .main-scroll {
+  padding: 30px 16px 24px !important;
+  gap: 12px !important;
 }
-</style>
-
-<!-- ENTER NAME -->
-<div class="screen" id="enter-name">
-  <div class="name-q">Wie darf ich<br>dich nennen?</div>
-  <input class="glass-input" id="nameInput" type="text" placeholder="Dein Name …" autocomplete="off" autocorrect="off" spellcheck="false">
-  <button class="cream-btn" onclick="saveName()">✓ &nbsp;Speichern</button>
-</div>
-
-<!-- WELCOME -->
-<div class="screen" id="welcome">
-  <div class="welcome-inner">
-    <svg class="welcome-h" viewBox="0 0 492 492" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M80.8896 399.085C80.8896 377.781 88.7957 352.215 88.7957 254.826V149.52C88.7957 108.739 59 113 59 91.0871C59 69.1744 101.569 57 143.528 57C181.84 57 198.26 71.6076 198.26 109.958V204.306C198.26 211.003 200.691 214.656 207.989 214.656H284.006C291.304 214.656 293.738 211.003 293.738 204.306V94.1314C293.738 71.6076 305.898 57 350.901 57C395.903 57 410.497 71.002 410.497 92.9121C410.497 114.822 403.809 140.39 403.809 233.521V341.869C403.809 382.653 433 378.392 433 400.305C433 422.217 390.431 435 348.47 435C310.768 435 293.74 420.392 293.74 381.436V281.611C293.74 274.914 291.307 271.261 284.008 271.261H207.992C200.696 271.261 198.262 274.914 198.262 281.611V397.871C198.262 420.392 186.099 435 141.099 435C96.0993 435 80.8949 420.392 80.8949 399.088L80.8896 399.085Z" fill="url(#welcome_grad)"/>
-      <defs>
-        <linearGradient id="welcome_grad" x1="246" y1="57" x2="246" y2="435" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#EBFCF4"/>
-          <stop offset="1" stop-color="#EBFCF4" stop-opacity="0.7"/>
-        </linearGradient>
-      </defs>
-    </svg>
-    <div class="welcome-title">Mein<br>Arbeitstag</div>
-    <div class="welcome-sub" id="welcomeSub">Hallo!</div>
-    <div class="progress-bar">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
-  </div>
-</div>
-
-<!-- MAIN -->
-<div class="screen" id="main">
-  <div class="main-scroll">
-    <div class="main-top">
-      <div class="main-greeting" id="mainGreeting">HALLO!</div>
-      <div class="main-title">Mein<br>Arbeitstag</div>
-      <div class="date-nav">
-        <button class="nav-btn" id="btnPrev" onclick="prevDay()">&#8249;</button>
-        <div class="main-date" id="mainDate"></div>
-        <button class="nav-btn ghost" id="btnNext" onclick="nextDay()">&#8250;</button>
-      </div>
-    </div>
-
-    <div class="grid2">
-      <div class="card card-blue">
-        <div class="card-icon">📦</div>
-        <div class="card-row">
-          <button class="c-btn" onclick="change('kartons',-1)">−</button>
-          <div class="c-num" id="nKartons">0</div>
-          <button class="c-btn" onclick="change('kartons',1)">+</button>
-        </div>
-        <div class="card-lbl">Kartons verpackt</div>
-      </div>
-      <div class="card card-indigo">
-        <div class="card-icon">💪</div>
-        <div class="card-row">
-          <button class="c-btn" onclick="change('pipes',-1)">−</button>
-          <div class="c-num" id="nPipes">0</div>
-          <button class="c-btn" onclick="change('pipes',1)">+</button>
-        </div>
-        <div class="card-lbl">SlashPipes fertig</div>
-      </div>
-    </div>
-
-    <div class="grid2">
-      <div class="card card-teal">
-        <div class="card-icon">🤍</div>
-        <div class="card-row">
-          <button class="c-btn" onclick="change('helfen',-1)">−</button>
-          <div class="c-num" id="nHelfen">0</div>
-          <button class="c-btn" onclick="change('helfen',1)">+</button>
-        </div>
-        <div class="card-lbl">Mal geholfen</div>
-      </div>
-      <div class="card card-violet" style="justify-content:space-between">
-        <div class="mood-opts" style="width:100%;flex:1;align-items:center;justify-content:center">
-          <div class="mood-opt" onclick="setMood(1,this)">😐</div>
-          <div class="mood-opt" onclick="setMood(2,this)">🙂</div>
-          <div class="mood-opt" onclick="setMood(3,this)">😁</div>
-        </div>
-        <div class="card-lbl">Wie war dein Tag?</div>
-      </div>
-    </div>
-
-    <div class="week-bar" id="weekBar"></div>
-
-    <button class="erledigt" onclick="saveDay()">✓&nbsp; Erledigt</button>
-  </div>
-</div>
-
-<!-- REPORT -->
-<div class="screen" id="report">
-  <div class="report-scroll">
-    <div class="report-top">
-      <div class="report-tag">Tagesbericht</div>
-      <div class="report-hi" id="reportHi">Super gemacht!</div>
-      <div class="report-date" id="reportDate"></div>
-      <div class="report-nav">
-        <button class="nav-btn" id="rBtnPrev" onclick="reportNavPrev()">&#8249;</button>
-        <button class="nav-btn report-back-btn" onclick="goHome()">&#8962;</button>
-        <button class="nav-btn" id="rBtnNext" onclick="reportNavNext()">&#8250;</button>
-      </div>
-    </div>
-    <div class="report-body">
-      <div class="report-card">
-        <div class="r-row"><div class="r-icon">📦</div><div class="r-label">Kartons verpackt</div><div class="r-val" id="rK">0</div></div>
-        <div class="r-row"><div class="r-icon">💪</div><div class="r-label">SlashPipes fertig</div><div class="r-val" id="rP">0</div></div>
-        <div class="r-row"><div class="r-icon">🤍</div><div class="r-label">Mal geholfen</div><div class="r-val" id="rH">0</div></div>
-        <div class="r-row"><div class="r-icon">😊</div><div class="r-label">Wie war dein Tag?</div><div class="r-val" id="rM">—</div></div>
-      </div>
-      <div class="report-btns" style="grid-template-columns:1fr">
-        <button class="btn-soft" id="btnReset" onclick="showResetConfirm()">Tag zurücksetzen</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- RESET CONFIRM MODAL -->
-<div class="modal-backdrop" id="resetConfirm" style="display:none" onclick="hideResetConfirm()">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <div class="modal-title">Tag zurücksetzen?</div>
-    <div class="modal-desc">Alle Zahlen werden auf 0 gesetzt.</div>
-    <div class="modal-btns">
-      <button class="modal-btn modal-btn-no" onclick="hideResetConfirm()">Nein</button>
-      <button class="modal-btn modal-btn-yes" onclick="resetDay()">Ja</button>
-    </div>
-  </div>
-</div>
-
-
-<div class="screen" id="achievement">
-  <canvas id="confettiCanvas" style="position:fixed;inset:0;pointer-events:none;z-index:100;width:100%;height:100%"></canvas>
-  <div class="ach-inner">
-    <div class="ach-emoji" id="achEmoji">🏆</div>
-    <div class="ach-title" id="achTitle">Super!</div>
-    <div class="ach-desc" id="achDesc"></div>
-    <button class="cream-btn" style="max-width:260px;margin-top:32px" onclick="closeAchievement()">Weiter 🎉</button>
-  </div>
-</div>
-
-<script>
-const S = { get: k => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } }, set: (k,v) => localStorage.setItem(k,JSON.stringify(v)) };
-
-let userName = S.get('hana_name') || '';
-let days = S.get('hana_days') || {};
-let viewing = todayKey();
-let reportingKey = '';
-
-function todayKey() { const d = new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
-
-function offsetKey(base, delta) {
-  const p = base.split('-');
-  const d = new Date(+p[0], +p[1]-1, +p[2]);
-  d.setDate(d.getDate()+delta);
-  return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+.android-os .card, 
+.android-os .mood-card {
+  min-height: 120px !important;
+  padding: 14px 10px 12px !important; 
+  border-radius: 16px !important; 
 }
+.android-os .c-num { font-size: 32px !important; }
+.android-os .card-icon { font-size: 22px !important; margin-bottom: 4px !important; }
+.android-os .main-title { font-size: 28px !important; margin-bottom: 8px !important; }
+.android-os .card-lbl, 
+.android-os .mood-lbl { font-size: 9px !important; }
+.android-os .mood-opt { font-size: 22px !important; min-height: 38px !important; padding: 4px !important; }
+.android-os .c-btn { width: 28px !important; height: 28px !important; }
 
-function getDay(k) { return days[k] || {kartons:0,pipes:0,helfen:0,mood:null,done:false}; }
-
-function show(id) {
-  document.querySelectorAll('.screen').forEach(s => {
-    s.classList.remove('active', 'slide-out');
-  });
-  const next = document.getElementById(id);
-  next.classList.add('active');
-  const scroll = next.querySelector('.main-scroll, .report-scroll');
-  if (scroll) scroll.scrollTop = 0;
-}
-
-// SPLASH
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    if (!userName) show('enter-name');
-    else if (getDay(todayKey()).done) {
-      // today already submitted — go straight to report
-      viewing = todayKey();
-      showReport(todayKey());
-    } else runWelcome();
-  }, 2200);
-});
-
-// NAME
-function saveName() {
-  const v = document.getElementById('nameInput').value.trim();
-  if (!v) { document.getElementById('nameInput').focus(); return; }
-  userName = v; S.set('hana_name', userName);
-  runWelcome();
-}
-document.getElementById('nameInput').addEventListener('keydown', e => { if (e.key === 'Enter') saveName(); });
-
-// WELCOME
-function runWelcome() {
-  document.getElementById('welcomeSub').textContent = 'Hallo, ' + userName + '!';
-  show('welcome');
-  setTimeout(goToMain, 2400);
-}
-
-// MAIN
-function goToMain() {
-  viewing = todayKey();
-  renderMain();
-  show('main');
-}
-
-function renderMain() {
-  const data = getDay(viewing);
-  const isToday = viewing === todayKey();
-  const yesterdayKey = offsetKey(todayKey(), -1);
-
-  document.getElementById('mainGreeting').textContent = 'HALLO, ' + userName.toUpperCase() + '!';
-  document.getElementById('mainDate').textContent = fmtDate(viewing);
-  document.getElementById('nKartons').textContent = data.kartons;
-  document.getElementById('nPipes').textContent = data.pipes;
-  document.getElementById('nHelfen').textContent = data.helfen;
-
-  // mood
-  const moods = ['','😐','🙂','😁'];
-  document.querySelectorAll('.mood-opt').forEach((el,i) => el.classList.toggle('on', data.mood === i+1));
-  const moodIcon = document.getElementById('moodIcon');
-  if (moodIcon) moodIcon.textContent = data.mood ? moods[data.mood] : '😐';
-
-  // show prev button only on today (goes to yesterday)
-  // show next button only when viewing yesterday (goes back to today)
-  document.getElementById('btnPrev').classList.toggle('ghost', !isToday);
-  document.getElementById('btnNext').classList.toggle('ghost', isToday);
-  renderWeekBar();
-}
-
-function prevDay() {
-  // only go to yesterday
-  viewing = offsetKey(todayKey(), -1);
-  const data = getDay(viewing);
-  if (data.done) {
-    showReport(viewing);
-  } else {
-    renderMain();
-    show('main');
-  }
-}
-
-function nextDay() {
-  viewing = todayKey();
-  renderMain();
-  show('main');
-}
-
-function change(key, delta) {
-  const data = getDay(viewing);
-  data[key] = Math.max(0, data[key]+delta);
-  days[viewing] = data; S.set('hana_days', days);
-  const ids = {kartons:'nKartons',pipes:'nPipes',helfen:'nHelfen'};
-  const el = document.getElementById(ids[key]);
-  el.textContent = data[key];
-  el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
-  if (navigator.vibrate) navigator.vibrate(25);
-}
-
-// Visual feedback for +/- buttons
-document.querySelectorAll('.c-btn').forEach(btn => {
-  btn.addEventListener('touchstart', () => {
-    btn.style.background = 'rgba(255,255,255,0.3)';
-    btn.style.transform = 'scale(0.88)';
-    const card = btn.closest('.card');
-    if (card) {
-      card.style.transition = 'transform 0.15s cubic-bezier(0.34,1.8,0.64,1)';
-      card.style.transform = 'scale(1.04)';
-      setTimeout(() => { card.style.transform = ''; }, 180);
-    }
-  }, {passive: true});
-  btn.addEventListener('touchend', () => {
-    setTimeout(() => {
-      btn.style.background = '';
-      btn.style.transform = '';
-    }, 120);
-  }, {passive: true});
-});
-
-function setMood(val, btn) {
-  const data = getDay(viewing);
-  data.mood = val;
-  days[viewing] = data;
-  S.set('hana_days', days);
-  document.querySelectorAll('.mood-opt').forEach((el,i) => el.classList.toggle('on', i+1===val));
-}
-
-function saveDay() {
-  const data = getDay(viewing);
-  data.done = true;
-  days[viewing] = data;
-  S.set('hana_days', days);
-  // small delay so days is fully committed before checking totals
-  setTimeout(() => checkAchievements(() => showReport(viewing)), 50);
-}
-
-function animateCount(elId, target) {
-  const el = document.getElementById(elId);
-  if (!el || typeof target !== 'number') return;
-  const duration = 600;
-  const start = performance.now();
-  function step(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(ease * target);
-    if (progress < 1) requestAnimationFrame(step);
-    else el.textContent = target;
-  }
-  requestAnimationFrame(step);
-}
-
-// ════════════════════════════
-// ACHIEVEMENTS
-// ════════════════════════════
-const ACHIEVEMENTS = [
-  { id:'k5',   emoji:'📦', title:'Erster Schritt!',     desc:'5 Kartons verpackt!',    check: t => t.kartons >= 5 },
-  { id:'k20',  emoji:'📦', title:'Karton-Profi!',       desc:'20 Kartons verpackt!',   check: t => t.kartons >= 20 },
-  { id:'k50',  emoji:'🏆', title:'Karton-Champion!',    desc:'50 Kartons verpackt!',   check: t => t.kartons >= 50 },
-  { id:'k100', emoji:'⭐', title:'Karton-Star!',        desc:'100 Kartons verpackt!',  check: t => t.kartons >= 100 },
-  { id:'k200', emoji:'👑', title:'Karton-König!',       desc:'200 Kartons verpackt!',  check: t => t.kartons >= 200 },
-  { id:'p5',   emoji:'💪', title:'Stark!',              desc:'5 SlashPipes fertig!',   check: t => t.pipes >= 5 },
-  { id:'p20',  emoji:'💪', title:'Super stark!',        desc:'20 SlashPipes fertig!',  check: t => t.pipes >= 20 },
-  { id:'p50',  emoji:'🔥', title:'Unaufhaltbar!',       desc:'50 SlashPipes fertig!',  check: t => t.pipes >= 50 },
-  { id:'p100', emoji:'⚡', title:'Blitzschnell!',       desc:'100 SlashPipes fertig!', check: t => t.pipes >= 100 },
-  { id:'p200', emoji:'🚀', title:'Rakete!',             desc:'200 SlashPipes fertig!', check: t => t.pipes >= 200 },
-  { id:'h3',   emoji:'🤍', title:'Guter Freund!',       desc:'3 Mal geholfen!',        check: t => t.helfen >= 3 },
-  { id:'h7',   emoji:'💛', title:'Super-Freund!',       desc:'7 Mal geholfen!',        check: t => t.helfen >= 7 },
-  { id:'h15',  emoji:'🧡', title:'Held des Tages!',     desc:'15 Mal geholfen!',       check: t => t.helfen >= 15 },
-  { id:'h30',  emoji:'❤️', title:'Teamheld!',           desc:'30 Mal geholfen!',       check: t => t.helfen >= 30 },
-  { id:'h50',  emoji:'🦸', title:'Superheld!',          desc:'50 Mal geholfen!',       check: t => t.helfen >= 50 },
-  { id:'m2',   emoji:'😊', title:'Gute Laune!',         desc:'2 Tage gute Stimmung!',  check: t => t.moodStreak >= 2 },
-  { id:'m4',   emoji:'😁', title:'Sonnenschein!',       desc:'4 Tage gute Stimmung!',  check: t => t.moodStreak >= 4 },
-  { id:'m7',   emoji:'🌟', title:'Immer positiv!',      desc:'7 Tage gute Stimmung!',  check: t => t.moodStreak >= 7 },
-  { id:'m14',  emoji:'✨', title:'Stimmungs-König!',    desc:'14 Tage gute Stimmung!', check: t => t.moodStreak >= 14 },
-  { id:'d2',   emoji:'📅', title:'2 Tage dabei!',       desc:'2 Tage in Folge!',       check: t => t.streak >= 2 },
-  { id:'d4',   emoji:'🗓️', title:'4 Tage am Stück!',   desc:'4 Tage in Folge!',       check: t => t.streak >= 4 },
-  { id:'d7',   emoji:'🎯', title:'Eine Woche!',         desc:'7 Tage in Folge!',       check: t => t.streak >= 7 },
-  { id:'d14',  emoji:'💎', title:'Zwei Wochen!',        desc:'14 Tage in Folge!',      check: t => t.streak >= 14 },
-  { id:'d21',  emoji:'🏅', title:'Drei Wochen!',        desc:'21 Tage in Folge!',      check: t => t.streak >= 21 },
-];
-
-function getTotals() {
-  let kartons = 0, pipes = 0, helfen = 0, streak = 0, moodStreak = 0;
-  Object.values(days).forEach(d => {
-    if (d.done) { kartons += d.kartons||0; pipes += d.pipes||0; helfen += d.helfen||0; }
-  });
-  let k = todayKey();
-  while (days[k] && getDay(k).done) { streak++; k = offsetKey(k,-1); }
-  k = todayKey();
-  while (days[k] && getDay(k).done && getDay(k).mood >= 2) { moodStreak++; k = offsetKey(k,-1); }
-  return { kartons, pipes, helfen, streak, moodStreak };
-}
-
-let achQueue = [];
-let afterAch = null;
-
-function checkAchievements(callback) {
-  const unlocked = S.get('hana_ach') || [];
-  const totals = getTotals();
-  const newOnes = ACHIEVEMENTS.filter(a => !unlocked.includes(a.id) && a.check(totals));
-  if (newOnes.length === 0) { callback(); return; }
-  S.set('hana_ach', [...unlocked, ...newOnes.map(a => a.id)]);
-  achQueue = [...newOnes];
-  afterAch = callback;
-  showNextAch();
-}
-
-function showNextAch() {
-  if (achQueue.length === 0) { afterAch && afterAch(); return; }
-  const ach = achQueue.shift();
-  document.getElementById('achEmoji').textContent = ach.emoji;
-  document.getElementById('achTitle').textContent = ach.title;
-  document.getElementById('achDesc').textContent  = ach.desc;
-  show('achievement');
-  startConfetti();
-  if (navigator.vibrate) navigator.vibrate([50,30,50,30,100]);
-}
-
-function closeAchievement() {
-  stopConfetti();
-  showNextAch();
-}
-
-// CONFETTI
-let confettiRunning = false, confettiParticles = [], confettiRAF = null;
-
-function startConfetti() {
-  const canvas = document.getElementById('confettiCanvas');
-  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-  const ctx = canvas.getContext('2d');
-  confettiRunning = true; confettiParticles = [];
-  const colors = ['#EBFCF4','#B9F078','#04815D','#025C42','#6ee7b7','#EBFCF4','#B9F078'];
-  for (let b = 0; b < 3; b++) {
-    setTimeout(() => {
-      for (let i = 0; i < 40; i++) {
-        confettiParticles.push({
-          x: canvas.width*(0.2+Math.random()*0.6), y: canvas.height+10,
-          vx: (Math.random()-0.5)*8, vy: -(10+Math.random()*10),
-          color: colors[Math.floor(Math.random()*colors.length)],
-          size: 6+Math.random()*6, rot: Math.random()*360,
-          rotV: (Math.random()-0.5)*8,
-          shape: Math.random()>0.5?'rect':'circle', life: 1,
-        });
-      }
-    }, b*300);
-  }
-  function loop() {
-    if (!confettiRunning) { ctx.clearRect(0,0,canvas.width,canvas.height); return; }
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    confettiParticles = confettiParticles.filter(p => p.life > 0);
-    confettiParticles.forEach(p => {
-      p.x+=p.vx; p.y+=p.vy; p.vy+=0.3; p.vx*=0.99; p.rot+=p.rotV; p.life-=0.008;
-      ctx.save(); ctx.globalAlpha=Math.max(0,p.life);
-      ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180); ctx.fillStyle=p.color;
-      if (p.shape==='rect') ctx.fillRect(-p.size/2,-p.size/4,p.size,p.size/2);
-      else { ctx.beginPath(); ctx.arc(0,0,p.size/2,0,Math.PI*2); ctx.fill(); }
-      ctx.restore();
-    });
-    confettiRAF = requestAnimationFrame(loop);
-  }
-  loop();
-}
-
-function stopConfetti() {
-  confettiRunning = false;
-  if (confettiRAF) cancelAnimationFrame(confettiRAF);
-  const canvas = document.getElementById('confettiCanvas');
-  canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
-}
-
-// WEEK BAR
-const DAY_LABELS = ['So','Mo','Di','Mi','Do','Fr','Sa'];
-function renderWeekBar() {
-  const bar = document.getElementById('weekBar');
-  const todayDate = new Date();
-  const todayK = todayKey();
-  const dow = todayDate.getDay();
-  bar.innerHTML = '';
-  [1,2,3,4,5].forEach(wd => {
-    const diff = wd - dow;
-    const d = new Date(todayDate); d.setDate(todayDate.getDate()+diff);
-    const key = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-    const done = days[key] && getDay(key).done;
-    const isToday = key === todayK;
-    const isFuture = diff > 0;
-    const wrap = document.createElement('div'); wrap.className = 'week-dot';
-    const circle = document.createElement('div');
-    circle.className = 'week-dot-circle'+(done?' done':'')+(isToday?' today':'');
-    circle.textContent = done ? '✓' : '';
-    const label = document.createElement('div'); label.className = 'week-dot-label';
-    label.textContent = DAY_LABELS[wd];
-    wrap.appendChild(circle); wrap.appendChild(label); bar.appendChild(wrap);
-  });
-}
-
-// REPORT
-function showReport(key) {
-  reportingKey = key;
-  const todayK = todayKey();
-  const yesterdayK = offsetKey(todayK, -1);
-  const data = getDay(key);
-  const moods = ['','😐','🙂','😁'];
-  document.getElementById('reportHi').innerHTML = 'Super gemacht,<br>' + userName + '!';
-  document.getElementById('reportDate').textContent = fmtDate(key);
-  document.getElementById('rM').textContent = moods[data.mood] || '—';
-  ['rK','rP','rH'].forEach(id => { document.getElementById(id).textContent = '0'; });
-
-  // ‹ visible when viewing today and yesterday is also done
-  const hasPrev = (key === todayK) && days[yesterdayK] && getDay(yesterdayK).done;
-  // › visible when viewing yesterday and today is also done
-  const hasNext = (key === yesterdayK) && days[todayK] && getDay(todayK).done;
-  document.getElementById('rBtnPrev').classList.toggle('ghost', !hasPrev);
-  document.getElementById('rBtnNext').classList.toggle('ghost', !hasNext);
-
-  show('report');
-  setTimeout(() => {
-    animateCount('rK', data.kartons);
-    animateCount('rP', data.pipes);
-    animateCount('rH', data.helfen);
-  }, 350);
-}
-
-function reportNavPrev() {
-  const yesterdayK = offsetKey(todayKey(), -1);
-  if (days[yesterdayK] && getDay(yesterdayK).done) showReport(yesterdayK);
-}
-
-function reportNavNext() {
-  const todayK = todayKey();
-  if (days[todayK] && getDay(todayK).done) showReport(todayK);
-}
-
-function goHome() {
-  viewing = todayKey();
-  renderMain();
-  show('main');
-}
-
-function goBackFromReport() {
-  // If reporting today → try to go to yesterday
-  // If reporting yesterday → go back to today
-  const todayK = todayKey();
-  const yesterdayK = offsetKey(todayK, -1);
-
-  if (reportingKey === todayK) {
-    // came from today's report — check yesterday
-    const yData = getDay(yesterdayK);
-    if (days[yesterdayK]) {
-      // yesterday exists
-      if (yData.done) {
-        // yesterday is done → show yesterday's report
-        showReport(yesterdayK);
-      } else {
-        // yesterday not done → go fill it in
-        viewing = yesterdayK;
-        renderMain();
-        show('main');
-      }
-    } else {
-      // no yesterday data at all → go to today
-      viewing = todayK;
-      renderMain();
-      show('main');
-    }
-  } else {
-    // came from yesterday's report → go back to today
-    viewing = todayK;
-    renderMain();
-    show('main');
-  }
-}
-
-function showResetConfirm() {
-  document.getElementById('resetConfirm').style.display = 'flex';
-}
-function hideResetConfirm() {
-  document.getElementById('resetConfirm').style.display = 'none';
-}
-
-function resetDay() {
-  days[viewing] = {kartons:0,pipes:0,helfen:0,mood:null,done:false};
-  S.set('hana_days', days);
-  hideResetConfirm();
-  renderMain();
-  show('main');
-}
-
-// DATE FORMAT
-function fmtDate(key) {
-  const p = key.split('-');
-  const d = new Date(+p[0], +p[1]-1, +p[2]);
-  const wd = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
-  const mn = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
-  return wd[d.getDay()]+', '+d.getDate()+'. '+mn[d.getMonth()]+' '+d.getFullYear();
-}
-
-// midnight refresh
-const n = new Date();
-setTimeout(() => { renderMain(); setInterval(renderMain,86400000); }, new Date(n.getFullYear(),n.getMonth(),n.getDate()+1)-n);
-</script>
-</body>
-</html>
+/* --- Экран отчета (Tagesbericht) --- */
+.android-os .report-top {
+  padding: 30px 20px 2
